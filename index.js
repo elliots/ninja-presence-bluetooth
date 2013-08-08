@@ -3,6 +3,8 @@ var Presence = require('ninja-presence-base');
 module.exports = Presence;
 
 Presence.prototype.G = 'bluetooth';
+Presence.prototype.V = 0;
+Presence.prototype.D = 263;
 Presence.prototype.name = 'Presence - Bluetooth';
 
 Presence.prototype.init = function() {
@@ -17,9 +19,10 @@ Presence.prototype.init = function() {
     self._app.log.info("Found bluetooth device", name, address);
   });
 
-  bt.on('finished', function() {
+  this._bt.on('finished', function() {
     self.scanComplete();
   });
+
 };
 
 Presence.prototype.scan = function() {
